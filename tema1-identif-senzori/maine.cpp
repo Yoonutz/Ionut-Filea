@@ -8,7 +8,7 @@ int main()
 {
 	std::string linie;
 	std::ifstream sensors("data/sensors.txt");
-	//sensors.open("/data/sensors.txt");
+
 	if (sensors.is_open())
 	{
 		std::cout << "Lista sezorilor cu temperaturile aferente:" << '\n';
