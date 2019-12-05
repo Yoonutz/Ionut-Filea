@@ -1,3 +1,14 @@
+//tema1:
+//Crearea unui fisier "sensors.txt" intr - un folder "data" care sa contina :
+//	-nume de senzori(fara spatii) : ex.identificatori senzori, senzori de temperatura;
+//		Ex.lista:
+//			Abacus 54.5;
+//			Abacus 52;
+//			Prometeus 20;
+//			Prometeus 67.1;
+//	-valori numerice cu virgula(temperaturi in grade celsius) : ex. 55.1;
+//	-min 10 linii in fisierul text;
+
 #include <iostream>
 #include <fstream>
 #include <string>
