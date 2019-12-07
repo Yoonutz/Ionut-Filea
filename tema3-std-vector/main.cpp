@@ -16,77 +16,67 @@
 
 using namespace std;
 
+vector<double> Temperatures;
+vector<string> Sensor_Names;
+
+string sensor_name = "";
+string max_sensor_name = "";
+int SIZE = 11;
+double temp = 0.0;
+double max_temp = 0.0;
+ifstream myfile("data/sensors.txt");
+
 void MaxTemperature(double);
-void SensorNames(string);
+void ReadList(string);
 
 int main() 
 {
-    //Show sensor name
+
+    //Read entries
+    string sensorNames;
+    ReadList(sensorNames);
+
+    //Show sensor name and max. temp. value
     double max_temp_value{};
     MaxTemperature(max_temp_value);
+    
+    cout << "---------------------------- " << endl;
+    cout << "Temperatura maxima este: " << max_temp << endl;
+    cout << "Sensorul are numele: " << max_sensor_name << endl;
+    cout << "---------------------------- " << endl;
+    cout << " " << endl;
 
-    //Show max. temperature
-    string maximum_sensor_name;
-    SensorNames(maximum_sensor_name);
+    system("pause");
+    return 0;
+}
+
+void ReadList(string sensorNames)
+{
+            cout << "Lista sezorilor cu temperaturile aferente:" << endl;
+
+            while (getline(myfile, sensor_name))
+            {
+                cout << sensor_name << endl;;
+            }
+            myfile.close();
 }
 
 void MaxTemperature(double max_temp_value)
 {
-    vector<double> Temperatures;
-    string sensor_name = "";
-    int SIZE = 11;
-    double temp = 0.0;
-    double max_temp = 0.0;
-
-    ifstream myfile("data/sensors.txt", ios::in);
-
-    double number = 0.0;
+    ifstream myfile("data/sensors.txt");
 
     for (int count = 0; count < SIZE; count++)
     {
-        myfile >> sensor_name >> temp;
-        Temperatures.push_back(temp);
-
-        if (max_temp < temp)
+        if (myfile.is_open())
         {
-            max_temp = temp;
+            myfile >> sensor_name >> temp;
+
+            if (max_temp < temp)
+            {
+                max_temp = temp;
+                max_sensor_name = sensor_name;
+            }
         }
     }
-
-    cout << "Temperatura maxima este: " << max_temp << endl;
-
-    //system("pause");
-    //return 0;
 }
 
-void SensorNames(string maximum_sensor_name)
-{
-    vector<string> Sensor_Names;
-
-    string sensor_name = "";
-    string max_sensor_name = "";
-    int SIZE = 11;
-    double temp = 0.0;
-    double max_temp = 0.0;
-
-    ifstream myfile("data/sensors.txt", ios::in);
-
-    double number = 0.0;
-
-    for (int count = 0; count < SIZE; count++)
-    {
-        myfile >> sensor_name >> temp;
-        Sensor_Names.push_back(sensor_name);
-        if (max_temp < temp)
-        {
-            max_temp = temp;
-            max_sensor_name = sensor_name;
-        }
-    }
-
-    // cout << max_temp << endl;
-    cout << "Sensorul are numele: " << max_sensor_name << endl;
-
-    system("pause");
-    //return 0;
-}
